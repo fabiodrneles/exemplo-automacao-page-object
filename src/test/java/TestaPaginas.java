@@ -31,7 +31,10 @@ public class TestaPaginas {
         // Clicar no botão pesquisa
         homePage.clicaBotaoPesquisar();
 
-
+        //
+        String tituloEsperado = "https://automacao.testerglobal.com/?post_type=product&s=&product_cat=";
+        String paginaEncontrada = driver.getCurrentUrl();
+        assertEquals(tituloEsperado, paginaEncontrada);
     }
 
     @Test
