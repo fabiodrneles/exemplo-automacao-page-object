@@ -5,6 +5,13 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+// 003 FR-1: toolchain Java 21 (decisão D2).
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -13,9 +20,8 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    implementation("org.seleniumhq.selenium:selenium-java:4.27.0")
-
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.27.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.test {

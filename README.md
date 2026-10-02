@@ -1,104 +1,51 @@
 # Projeto de Automação de Testes com Selenium
 
-## Teste realizado no site: <https://automacao.testerglobal.com/>
+[![CI](https://github.com/fabiodrneles/exemplo-automacao-page-object/actions/workflows/ci.yml/badge.svg)](https://github.com/fabiodrneles/exemplo-automacao-page-object/actions/workflows/ci.yml)
+[![Site real](https://github.com/fabiodrneles/exemplo-automacao-page-object/actions/workflows/site-real.yml/badge.svg)](https://github.com/fabiodrneles/exemplo-automacao-page-object/actions/workflows/site-real.yml)
 
-![image](https://github.com/user-attachments/assets/8d8aaf2e-b277-410c-9469-6286652886be)
+Testes de UI em **Java 21**, **JUnit 5** e **Selenium 4** no padrão **Page Object**, validando a busca de produtos do e-commerce de treino <https://automacao.testerglobal.com/>.
 
-## Sobre o projeto
+![Página inicial do site testado](https://github.com/user-attachments/assets/8d8aaf2e-b277-410c-9469-6286652886be)
 
-Este projeto foi desenvolvido para demonstrar habilidades em automação de testes de interface utilizando o framework **Selenium WebDriver** em Java. Ele simula cenários reais de testes em um site de e-commerce fictício, destacando boas práticas de escrita e organização de testes automatizados.
+## 📋 O que é testado
 
-## 📋 Descrição do Projeto
+| Teste | Ação | Validação |
+|---|---|---|
+| `pesquisarCampoVazio` | Pesquisa com o campo vazio | A URL tem `post_type=product` e `s=` vazio |
+| `pesquisarProduto` | Pesquisa "Camera" | Abre `/product/camera/` e o título do produto é "Camera" |
 
-O objetivo deste projeto é validar a funcionalidade de pesquisa de produtos em um site de e-commerce. Dois cenários de teste foram desenvolvidos:
+## 🧱 Como os testes são organizados
 
-1. **Busca com campo de pesquisa vazio:** Verifica se o sistema mantém um comportamento adequado ao realizar uma pesquisa sem fornecer um termo.
-2. **Busca com produto específico:** Testa a pesquisa de um produto específico ("Camera") e valida se a página correta do produto é exibida.
+- **Page Objects** (`Home`, `PaginaProduto`): seletores curtos e estáveis e esperas explícitas (`WebDriverWait`); os testes só falam a língua do negócio.
+- **Fixture local** (`FixtureServer`): uma réplica mínima da busca da loja, servida pelo próprio teste. Os PRs não dependem de um site de terceiros.
+- **Site real**: o workflow [Site real](.github/workflows/site-real.yml) roda os mesmos testes contra a loja todo dia e sob demanda.
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Como executar
 
-- **Java 11**: Linguagem de programação principal.
-- **Selenium WebDriver**: Para controle e automação do navegador.
-- **JUnit 5**: Framework de testes para organizar e executar os casos de teste.
-- **ChromeDriver**: Driver utilizado para automação no navegador Google Chrome.
+Pré-requisitos: JDK 21 e Google Chrome. O driver do Chrome é baixado automaticamente pelo Selenium Manager.
 
-## 📂 Estrutura do Projeto
+```bash
+# Contra a fixture local, sem abrir janela
+./gradlew test -Dheadless=true
+```
 
-### **Classe `Home`**
+Para rodar contra o site real, ou vendo o navegador:
 
-A classe `Home` encapsula as interações com os elementos da página inicial do site.
+```text
+./gradlew test -DbaseUrl=https://automacao.testerglobal.com/
+./gradlew test
+```
 
-**Funções implementadas:**
+O relatório HTML fica em `build/reports/tests/test/index.html`; no CI, ele é publicado como artefato `test-report`.
 
-- **`insereNomeCampoPesquisa(String nomeDoProdutoParaBuscar)`**  
-  Insere o nome de um produto no campo de pesquisa.
-- **`clicaBotaoPesquisar()`**  
-  Clica no botão de pesquisa para executar a busca.
-- **`naoInsereNadaNaBarraDePesquisa()`**  
-  Simula a tentativa de pesquisa sem preencher o campo.
+## 🛠️ Tecnologias
 
-### **Classe `TestaPaginas`**
+- Java 21 (toolchain do Gradle)
+- JUnit 5
+- Selenium WebDriver 4 (com Selenium Manager)
+- Gradle 8 (Wrapper)
+- GitHub Actions
 
-A classe de testes utiliza a biblioteca **JUnit 5** para estruturar e executar os casos de teste.
+## 🧭 Processo
 
-**Casos de Teste:**
-
-1. **`pesquisarCampoVazio()`**
-    - Ação: Clica no botão de pesquisa sem inserir texto.
-    - Validação: Compara a URL gerada com a URL esperada para pesquisas vazias.
-    - Resultado esperado: A URL deve conter os parâmetros corretos indicando que a pesquisa foi feita sem entrada.
-
-2. **`pesquisarProduto()`**
-    - Ação: Insere o termo "Camera" no campo de pesquisa e clica no botão.
-    - Validação: Verifica se a URL redireciona para a página de detalhes do produto "Camera".
-    - Resultado esperado: A página correta do produto deve ser exibida.
-
-**Métodos de Configuração:**
-
-- **`@BeforeAll setup()`**: Configura o ambiente de teste, incluindo a inicialização do ChromeDriver e definição de timeouts.
-- **`@AfterAll tearDown()`**: Finaliza os testes e fecha o navegador.
-
-## 🔍 Pré-requisitos
-
-Antes de executar os testes, certifique-se de ter os seguintes itens configurados:
-
-1. **Java Development Kit (JDK) 11** ou superior instalado.
-2. Navegador **Google Chrome** atualizado.
-3. **ChromeDriver** compatível com a versão do navegador.
-4. Biblioteca do **Selenium WebDriver** e dependências do **JUnit 5** adicionadas ao projeto.
-
-## 🚀 Como Executar os Testes
-
-1. Clone este repositório:
-
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   ```
-
-2. Instale as dependências do projeto.
-3. Configure o caminho do **ChromeDriver** no ambiente ou no projeto.
-4. Execute os testes com um IDE como **IntelliJ IDEA** ou diretamente no terminal:
-
-   ```bash
-   ./gradlew test
-   ```
-
-## 🧪 Exemplos de Resultados
-
-### **Teste: Campo de Pesquisa Vazio**
-
-- **URL esperada:**  
-  `https://automacao.testerglobal.com/?post_type=product&s=&product_cat=`
-- **Resultado:** Sucesso.
-
-### **Teste: Pesquisa de Produto "Camera"**
-
-- **URL esperada:**  
-  `https://automacao.testerglobal.com/product/camera/`
-- **Resultado:** Sucesso.
-
-## 🌟 Destaques do Projeto
-
-- Organização clara com separação de responsabilidades entre classes de página (Page Objects) e classes de teste.
-- Boas práticas no uso de JUnit para configuração e limpeza do ambiente de teste.
-- Testes automatizados reproduzíveis e robustos para validação de funcionalidade.
+Este projeto segue Spec Driven Development com o [sdd-kit](https://github.com/fabiodrneles/sdd-kit): specs com critérios de aceite em [`specs/`](specs/README.md), um PR por ticket e `make ci` antes de todo push.
