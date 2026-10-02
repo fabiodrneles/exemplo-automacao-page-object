@@ -1,7 +1,7 @@
 # 001 — Testes de UI determinísticos
 
 - **Prioridade:** P0
-- **Status:** Draft — aguarda as decisões D1, D2 e D4 do dono
+- **Status:** Approved — decisões respondidas pelo dono em 2026-10-02
 - **Código afetado:** `src/test/java`, `build.gradle.kts`
 - **Resolve:** C1, A2, A3, M1, M2, M3
 
@@ -22,4 +22,4 @@
 
 ## Decisões
 
-- Pendentes: D1, D2 e D4 ([ANALYSIS.md §7](../ANALYSIS.md#7-decisões-em-aberto)).
+- D1, D2 e D4 respondidas pelo dono em 2026-10-02 conforme as recomendações de [ANALYSIS.md §7](../ANALYSIS.md#7-decisões-respondidas-pelo-dono-em-2026-10-02).

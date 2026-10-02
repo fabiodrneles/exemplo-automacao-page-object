@@ -1,7 +1,7 @@
 # 002 — CI, relatório e suíte contra o site real
 
 - **Prioridade:** P1
-- **Status:** Draft — aguarda as decisões D1 e D3 do dono
+- **Status:** Approved — decisões respondidas pelo dono em 2026-10-02
 - **Código afetado:** `.github/workflows/`, `build.gradle.kts`
 
 ## Requisitos funcionais
@@ -17,4 +17,4 @@
 
 ## Decisões
 
-- Pendentes: D1 e D3 ([ANALYSIS.md §7](../ANALYSIS.md#7-decisões-em-aberto)).
+- D1 e D3 respondidas pelo dono em 2026-10-02 conforme as recomendações de [ANALYSIS.md §7](../ANALYSIS.md#7-decisões-respondidas-pelo-dono-em-2026-10-02).

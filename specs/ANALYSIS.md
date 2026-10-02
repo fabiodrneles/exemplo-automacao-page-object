@@ -66,11 +66,11 @@ Bem estruturado e didático (descrição, estrutura, casos de teste). Desatualiz
 2. **Fase 2 (P1) → `v0.2.0`:** relatório dos testes no CI (D3), suíte contra o site real agendada, limpeza (`Main.java`, `.idea/`, import `v129`), README atualizado.
 3. **Fase 3 (P2) → `v1.0.0`:** relatório publicado (GitHub Pages) e o projeto ligado ao qa-portfolio.
 
-## 7. Decisões em aberto
+## 7. Decisões (respondidas pelo dono em 2026-10-02)
 
 | ID | Pergunta | Opções | Recomendação |
 |---|---|---|---|
-| D1 | Contra o que os testes de UI rodam no CI? | (a) em todo PR, contra uma **página local de fixture** (réplica mínima do cabeçalho de busca, servida pelo próprio teste); contra o **site real**, num job agendado diário e manual; (b) só o site real, em todo PR; (c) só a fixture | **(a)**: o PR fica determinístico, e o job diário ainda mostra os testes contra o site real |
-| D2 | Versão do Java? | (a) toolchain Java 21 (LTS); (b) 17; (c) 11, como diz o README | **(a)**: já compila com 21; o Gradle 8.8 suporta |
-| D3 | Relatório dos testes? | (a) relatório HTML do Gradle como artefato do CI; (b) Allure, publicado no GitHub Pages | **(a)** na Fase 2 e **(b)** na Fase 3: o relatório público vira vitrine no qa-portfolio |
-| D4 | Manter Selenium + JUnit 5? | (a) sim, melhorando o Page Object; (b) migrar para Selenide ou Playwright | **(a)**: o objetivo do repositório é demonstrar Selenium com Page Object |
+| D1 | Contra o que os testes de UI rodam no CI? | (a) em todo PR, contra uma **página local de fixture** (réplica mínima do cabeçalho de busca, servida pelo próprio teste); contra o **site real**, num job agendado diário e manual; (b) só o site real, em todo PR; (c) só a fixture | **(a)**: o PR fica determinístico, e o job diário ainda mostra os testes contra o site real — **respondida: (a)** |
+| D2 | Versão do Java? | (a) toolchain Java 21 (LTS); (b) 17; (c) 11, como diz o README | **(a)**: já compila com 21; o Gradle 8.8 suporta — **respondida: (a)** |
+| D3 | Relatório dos testes? | (a) relatório HTML do Gradle como artefato do CI; (b) Allure, publicado no GitHub Pages | **(a)** na Fase 2 e **(b)** na Fase 3: o relatório público vira vitrine no qa-portfolio — **respondida: (a) na Fase 2 e (b) na Fase 3** |
+| D4 | Manter Selenium + JUnit 5? | (a) sim, melhorando o Page Object; (b) migrar para Selenide ou Playwright | **(a)**: o objetivo do repositório é demonstrar Selenium com Page Object — **respondida: (a)** |

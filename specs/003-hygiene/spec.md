@@ -1,7 +1,7 @@
 # 003 — Higiene do projeto
 
 - **Prioridade:** P1
-- **Status:** Draft — aguarda a decisão D2 do dono
+- **Status:** Approved — decisões respondidas pelo dono em 2026-10-02
 - **Código afetado:** `build.gradle.kts`, `src/`, `.idea/`, `README.md`
 
 ## Requisitos funcionais
@@ -17,4 +17,4 @@
 
 ## Decisões
 
-- Pendente: D2 ([ANALYSIS.md §7](../ANALYSIS.md#7-decisões-em-aberto)).
+- D2 respondida pelo dono em 2026-10-02 conforme as recomendações de [ANALYSIS.md §7](../ANALYSIS.md#7-decisões-respondidas-pelo-dono-em-2026-10-02).
