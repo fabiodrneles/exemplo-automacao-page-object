@@ -17,10 +17,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation(platform("org.junit:junit-bom:6.1.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
-    testImplementation("org.seleniumhq.selenium:selenium-java:4.27.0")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.49.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
