@@ -13,8 +13,8 @@ Cada tarefa referencia a spec e os critérios de aceite que ela fecha. Ordem sug
 
 ## Fase 2 — Confiável (P1) → `v0.2.0`
 
-- [ ] **T3** Relatório como artefato e job diário contra o site real — 002 FR-1, FR-2, AC-1, AC-2
-- [ ] **T4** Toolchain Java 21, limpeza e README verificado — 003 FR-1 a FR-3, AC-1, AC-2
+- [x] **T3** Relatório como artefato e job diário contra o site real — 002 FR-1, FR-2, AC-1, AC-2
+- [x] **T4** Toolchain Java 21, limpeza e README verificado — 003 FR-1 a FR-3, AC-1, AC-2
 
 ## Fase 3 — Profissional (P2) → `v1.0.0`
 
