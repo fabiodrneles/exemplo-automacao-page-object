@@ -29,7 +29,7 @@ Convenções: `MUST`/`SHOULD`/`MAY` seguem a RFC 2119. Prioridades: **P0** (bloq
 | ID | Spec | Prioridade | Status |
 |---|---|---|---|
 | 001 | [Testes de UI determinísticos](001-ui-tests/spec.md) | P0 | Done |
-| 002 | [CI, relatório e suíte contra o site real](002-ci-reports/spec.md) | P1 | Approved |
-| 003 | [Higiene do projeto](003-hygiene/spec.md) | P1 | Approved |
+| 002 | [CI, relatório e suíte contra o site real](002-ci-reports/spec.md) | P1 | In Progress |
+| 003 | [Higiene do projeto](003-hygiene/spec.md) | P1 | Done |
 
 Status possíveis: `Draft` → `Approved` → `In Progress` → `Done`.

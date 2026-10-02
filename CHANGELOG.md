@@ -4,6 +4,23 @@ Todas as mudanças relevantes deste projeto. Formato [Keep a Changelog](https://
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-02
+
+### Adicionado
+
+- Relatório HTML dos testes como artefato do CI (`test-report`), inclusive quando os testes falham.
+- Workflow "Site real": os testes rodam todo dia e sob demanda contra `automacao.testerglobal.com`.
+- Checagens no `make ci`: sem arquivos de IDE nem imports `devtools.vNNN`, e os comandos do README funcionam.
+
+### Alterado
+
+- Toolchain Java 21; o Selenium passa a dependência de teste.
+- README reescrito: o que é testado, como os testes são organizados e como executar.
+
+### Removido
+
+- `.idea/` e o `Main.java` de exemplo do IntelliJ.
+
 ## [0.1.0] - 2026-10-02
 
 Primeira versão com o processo SDD do [sdd-kit](https://github.com/fabiodrneles/sdd-kit). Specs em [`specs/`](specs/README.md).

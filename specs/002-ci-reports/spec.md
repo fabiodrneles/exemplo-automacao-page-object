@@ -1,7 +1,7 @@
 # 002 — CI, relatório e suíte contra o site real
 
 - **Prioridade:** P1
-- **Status:** Approved — decisões respondidas pelo dono em 2026-10-02
+- **Status:** In Progress — FR-1 e FR-2 entregues na `v0.2.0`; FR-3 (Allure) na Fase 3
 - **Código afetado:** `.github/workflows/`, `build.gradle.kts`
 
 ## Requisitos funcionais

@@ -1,7 +1,7 @@
 # 003 — Higiene do projeto
 
 - **Prioridade:** P1
-- **Status:** Approved — decisões respondidas pelo dono em 2026-10-02
+- **Status:** Done — entregue na `v0.2.0`
 - **Código afetado:** `build.gradle.kts`, `src/`, `.idea/`, `README.md`
 
 ## Requisitos funcionais
