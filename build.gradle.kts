@@ -20,6 +20,10 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    // Repassa -DbaseUrl, -Dheadless e -Dchrome.binary para os testes (spec 001 FR-1, FR-2).
+    listOf("baseUrl", "headless", "chrome.binary").forEach { key ->
+        System.getProperty(key)?.let { systemProperty(key, it) }
+    }
     testLogging {
         events ("passed", "skipped", "failed")
     }

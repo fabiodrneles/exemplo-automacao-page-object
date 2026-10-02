@@ -1,85 +1,94 @@
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.v129.page.model.WebAppManifest;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.time.Duration;
+import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Busca de produtos. Por padrão roda contra a fixture local; com
+ * -DbaseUrl=https://automacao.testerglobal.com/ roda contra o site real
+ * (spec 001 FR-2, AC-4).
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestaPaginas {
 
     private WebDriver driver;
-    private static final String baseURL = "https://automacao.testerglobal.com/";
-    Home homePage;
+    private FixtureServer fixture;
+    private String baseUrl;
 
-
-
-    @Test
-    @DisplayName("Ao Clicar no ícone de pesquisa a busca é feita sem preencher o campo de pesquisa")
-    public void pesquisarCampoVazio () {
-
-        // Entrar na página de testes
-        driver.get(baseURL);
-
-        homePage = new Home(driver);
-
-        // Não inseriu nada no campo de pesquisa
-        homePage.naoInsereNadaNaBarraDePesquisa();
-
-        // Clicar no botão pesquisa
-        homePage.clicaBotaoPesquisar();
-
-        //
-        String tituloEsperado = "https://automacao.testerglobal.com/?post_type=product&s=&product_cat=";
-        String paginaEncontrada = driver.getCurrentUrl();
-        assertEquals(tituloEsperado, paginaEncontrada);
-    }
-
-    @Test
-    @DisplayName("Digita camera na barra de pesquisa de produto e depois clica em pesquisar. Abre a pagina do produto com os detalhes do produto.")
-    public void pesquisarProduto () {
-        // Entrar na página de testes
-        driver.get(baseURL);
-        homePage = new Home(driver);
-
-        //Insere o nome do produto que eu desejo, camera
-        homePage.insereNomeCampoPesquisa("Camera");
-
-        //Clica no botão pesquisar
-        homePage.clicaBotaoPesquisar();
-
-        String tituloPaginaEsperada = "https://automacao.testerglobal.com/product/camera/";
-        String paginaEncontrada = driver.getCurrentUrl();
-
-        assertEquals (tituloPaginaEsperada, paginaEncontrada);
-    }
-
-    // metodo de preparação, roda tudo que for antes do teste.
     @BeforeAll
-    public void setup(){
-
-        // instanciando o chromedriver
-        driver = new ChromeDriver();
-        // definindo um tempo de espera
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10));
-
+    public void setup() throws Exception {
+        baseUrl = System.getProperty("baseUrl", "");
+        if (baseUrl.isBlank()) {
+            fixture = new FixtureServer();
+            baseUrl = fixture.baseUrl();
+        }
+        ChromeOptions options = new ChromeOptions();
+        String binario = System.getProperty("chrome.binary", "");
+        if (!binario.isBlank()) {
+            options.setBinary(binario);
+        }
+        // 001 FR-1: headless no CI (sem display) ou com -Dheadless=true.
+        if (System.getenv("CI") != null || Boolean.getBoolean("headless")) {
+            options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--window-size=1366,900");
+        }
+        driver = new ChromeDriver(options);
     }
 
-    // metodo para limpeza, roda tudo o que for depois do teste.
+    // 001 AC-2
+    @Test
+    @DisplayName("Ao clicar em pesquisar com o campo vazio, a busca é feita sem termo")
+    public void pesquisarCampoVazio() {
+        Home home = new Home(driver).abrir(baseUrl);
+        home.naoInsereNadaNaBarraDePesquisa().clicaBotaoPesquisar();
+
+        Map<String, String> query = query(driver.getCurrentUrl());
+        assertEquals("product", query.get("post_type"));
+        assertEquals("", query.get("s"));
+    }
+
+    // 001 AC-3
+    @Test
+    @DisplayName("Pesquisar \"Camera\" abre a página de detalhes do produto Camera")
+    public void pesquisarProduto() {
+        new Home(driver).abrir(baseUrl).insereNomeCampoPesquisa("Camera").clicaBotaoPesquisar();
+
+        assertEquals(URI.create(baseUrl).resolve("/product/camera/").toString(), driver.getCurrentUrl());
+        assertEquals("Camera", new PaginaProduto(driver).titulo());
+    }
+
+    // 001 FR-4: quit() encerra o navegador e o processo do driver.
     @AfterAll
-    public void tearDown () {
-        driver.close();
-
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+        if (fixture != null) {
+            fixture.close();
+        }
     }
 
-
-
-
-
-
-
-
-
+    private static Map<String, String> query(String url) {
+        Map<String, String> params = new LinkedHashMap<>();
+        String raw = URI.create(url).getRawQuery();
+        if (raw == null) {
+            return params;
+        }
+        for (String pair : raw.split("&")) {
+            String[] kv = pair.split("=", 2);
+            params.put(kv[0], kv.length > 1 ? URLDecoder.decode(kv[1], StandardCharsets.UTF_8) : "");
+        }
+        return params;
+    }
 }
