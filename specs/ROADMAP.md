@@ -8,8 +8,8 @@ Cada tarefa referencia a spec e os critérios de aceite que ela fecha. Ordem sug
 
 ## Fase 1 — Funcionar de verdade (P0) → `v0.1.0`
 
-- [ ] **T1** Fixture local, headless e URL base configurável; testes no `make ci` — 001 FR-1, FR-2, AC-1, AC-4
-- [ ] **T2** Page Object robusto: seletores estáveis, esperas explícitas, `quit`, validações completas — 001 FR-3 a FR-5, AC-2, AC-3
+- [x] **T1** Fixture local, headless e URL base configurável; testes no `make ci` — 001 FR-1, FR-2, AC-1, AC-4
+- [x] **T2** Page Object robusto: seletores estáveis, esperas explícitas, `quit`, validações completas — 001 FR-3 a FR-5, AC-2, AC-3
 
 ## Fase 2 — Confiável (P1) → `v0.2.0`
 
