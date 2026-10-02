@@ -29,17 +29,17 @@ public class TestaPaginas {
 
     @BeforeAll
     public void setup() throws Exception {
-        baseUrl = System.getProperty("baseUrl", "");
-        if (baseUrl.isBlank()) {
+        // 001 AC-4: -DbaseUrl escolhe o site real; sem ele, a fixture local.
+        baseUrl = resolveBaseUrl(System.getProperty("baseUrl"), () -> {
             fixture = new FixtureServer();
-            baseUrl = fixture.baseUrl();
-        }
+            return fixture.baseUrl();
+        });
         ChromeOptions options = new ChromeOptions();
         String binario = System.getProperty("chrome.binary", "");
         if (!binario.isBlank()) {
             options.setBinary(binario);
         }
-        // 001 FR-1: headless no CI (sem display) ou com -Dheadless=true.
+        // 001 FR-1, 001 AC-1: headless no CI (sem display) ou com -Dheadless=true.
         if (System.getenv("CI") != null || Boolean.getBoolean("headless")) {
             options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--window-size=1366,900");
         }
@@ -77,6 +77,14 @@ public class TestaPaginas {
         if (fixture != null) {
             fixture.close();
         }
+    }
+
+    interface BaseUrlSource {
+        String get() throws Exception;
+    }
+
+    static String resolveBaseUrl(String property, BaseUrlSource fixture) throws Exception {
+        return property == null || property.isBlank() ? fixture.get() : property;
     }
 
     private static Map<String, String> query(String url) {

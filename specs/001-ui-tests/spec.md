@@ -1,7 +1,7 @@
 # 001 — Testes de UI determinísticos
 
 - **Prioridade:** P0
-- **Status:** Approved — decisões respondidas pelo dono em 2026-10-02
+- **Status:** Done — entregue na `v0.1.0`
 - **Código afetado:** `src/test/java`, `build.gradle.kts`
 - **Resolve:** C1, A2, A3, M1, M2, M3
 
