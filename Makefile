@@ -5,8 +5,8 @@ GRADLE := ./gradlew --no-daemon
 .DEFAULT_GOAL := ci
 
 .PHONY: ci
-ci: ## Compila o código e os testes (os testes de UI entram com a decisão D1)
-	$(GRADLE) build -x test
+ci: ## Compila e roda os testes de UI (headless, contra a fixture local)
+	$(GRADLE) build
 
 .PHONY: docs
 docs: ## markdownlint (o CI também verifica links)
