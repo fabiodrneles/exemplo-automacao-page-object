@@ -1,0 +1,48 @@
+# Cria uma tag de versão. Sem "version", a versão é calculada pelos
+# Conventional Commits (go-release-manager); com "version", a tag vem do
+# ROADMAP e é criada no commit "ref" (ex.: o merge do PR de fechamento).
+name: Release tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Versão (ex. v0.2.0); vazio para calcular pelos commits
+        required: false
+        default: ""
+      ref:
+        description: Commit ou branch onde criar a tag
+        required: false
+        default: main
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+      - name: Tag informada
+        if: inputs.version != ''
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          case "$VERSION" in v[0-9]*.[0-9]*.[0-9]*) ;; *) echo "versão inválida: $VERSION" >&2; exit 1 ;; esac
+          git tag "$VERSION"
+          git push origin "$VERSION"
+          echo "### Tag $VERSION em $(git rev-parse --short HEAD)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Tag calculada pelos commits
+        if: inputs.version == ''
+        id: version
+        uses: fabiodrneles/go-release-manager@v1.0.0
+        with:
+          create: true
+      - name: Resumo
+        if: inputs.version == ''
+        env:
+          NEXT: ${{ steps.version.outputs.next }}
+        run: echo "### Tag ${NEXT:-nenhuma (sem commits que gerem release)}" >> "$GITHUB_STEP_SUMMARY"
