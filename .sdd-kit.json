@@ -1,0 +1,33 @@
+{
+  "kit": "sdd-kit",
+  "version": "v0.1.0",
+  "lang": "java",
+  "project": "exemplo-automacao-page-object",
+  "owner": "fabiodrneles",
+  "repo": "exemplo-automacao-page-object",
+  "files": {
+    ".claude/settings.json": "39bb8a6935b08e49ad68b96e23136cd8e0ab012a1e8dca60c01ab2506fb21651",
+    ".github/CODEOWNERS": "38eb4217ea0c5e6aed6896bc2b12313cda972dcf8c8c8befd5857b2fbab5f537",
+    ".github/ISSUE_TEMPLATE/bug.yml": "db9bc120441ec8d15263a7381d0c2bbc8c458f2ea141d64b032aa489b22a9b4e",
+    ".github/ISSUE_TEMPLATE/config.yml": "d55c8a6eb517a5a375f86115ac0a1039c62e15cd7a9f485f40ef1721a9eb5401",
+    ".github/ISSUE_TEMPLATE/task.yml": "abac7a096c30599e6bc931d30c69d8ac8c7515a049713e2b2ebc70d09f1b9fcb",
+    ".github/pull_request_template.md": "8653c74c03d2d1e4b890a18164e755a74698705546765d1443b6e840fe7b3415",
+    ".github/workflows/docs.yml": "4ad615439faf08407631c06e3ee59d4db449d2b8e3f833fa877df94b57f92765",
+    ".github/workflows/sdd-sync.yml": "3b23b046ac2d52a833b49f29c5745b35c9f563ad17651eda5a412a703121adaa",
+    ".markdownlint-cli2.yaml": "17d387a31b80b899acd9136c2dfc448aaab3a281a130dd4b4dcf3f73afa95e01",
+    "AGENTS.md": "bd7210e2c59c4ec53bbdea09b858122efb50b8ae35a5755f792c3e39d2802515",
+    "CLAUDE.md": "d6861d85c75b838df014897e5ae28252ac33ddabba37c0979285674f4ca163b4",
+    "CONTRIBUTING.md": "476e59415091650445ca29423b104e7d591911e660ac868f2fcbbd8be3d1865d",
+    "lychee.toml": "23f9200f926c966156a01d2100b36cf86f5bd4b90d45bc0a63265bf65105567e",
+    "scripts/sdd-check.sh": "934508ec324de784e6b98d7c11acdb85294486a100bbcbc99726da01ad29f3e1",
+    "scripts/sdd-sync.sh": "9c094bb926b5fc5b4911195dbe06df0cdbe3dac991f74b987b164db77da514eb",
+    "specs/ANALYSIS.md": "4fd59336f6c29079af94d5763d8550f522972438061f7c582455b50beea000e6",
+    "specs/README.md": "798fdee8515996a54e4d2f97ce92fdf81b643f06436d7cd3c0072fb16e2f8b09",
+    "specs/ROADMAP.md": "5f4e489907ec0c969eefac0797c424303898a528ad9b2a93e9fd2761828c4078",
+    "specs/constitution.md": "4159729a5d66d42c488a7fffae19232c47925b3c507470c79c8d16f36d6ee5ec",
+    ".claude/hooks/session-start.sh": "c6e80e25c583ee8d06c7b087514e851e13d7c3226cd49d34dbe966da87de2b8d",
+    ".github/dependabot.yml": "912b8fb6f8876996bda31153e6368b417167325e84c7672ca9fd2c92c469a264",
+    ".github/workflows/ci.yml": "09b8d3dea7c0bfa605092ee9de15c5f881ff6e890f7670f4763aaa5fde43691c",
+    "Makefile": "1e5328431c9cd1a4fd9817144abf0109428f166805720ddbdbe5bfc501fc028c"
+  }
+}

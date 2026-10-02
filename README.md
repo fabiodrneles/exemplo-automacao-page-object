@@ -1,12 +1,10 @@
-﻿# Modelo de teste
+# Projeto de Automação de Testes com Selenium
 
-## Teste realizado no site: https://automacao.testerglobal.com/
+## Teste realizado no site: <https://automacao.testerglobal.com/>
 
 ![image](https://github.com/user-attachments/assets/8d8aaf2e-b277-410c-9469-6286652886be)
 
-
-
-# Projeto de Automação de Testes com Selenium
+## Sobre o projeto
 
 Este projeto foi desenvolvido para demonstrar habilidades em automação de testes de interface utilizando o framework **Selenium WebDriver** em Java. Ele simula cenários reais de testes em um site de e-commerce fictício, destacando boas práticas de escrita e organização de testes automatizados.
 
@@ -27,9 +25,11 @@ O objetivo deste projeto é validar a funcionalidade de pesquisa de produtos em 
 ## 📂 Estrutura do Projeto
 
 ### **Classe `Home`**
+
 A classe `Home` encapsula as interações com os elementos da página inicial do site.
 
 **Funções implementadas:**
+
 - **`insereNomeCampoPesquisa(String nomeDoProdutoParaBuscar)`**  
   Insere o nome de um produto no campo de pesquisa.
 - **`clicaBotaoPesquisar()`**  
@@ -38,9 +38,11 @@ A classe `Home` encapsula as interações com os elementos da página inicial do
   Simula a tentativa de pesquisa sem preencher o campo.
 
 ### **Classe `TestaPaginas`**
+
 A classe de testes utiliza a biblioteca **JUnit 5** para estruturar e executar os casos de teste.
 
 **Casos de Teste:**
+
 1. **`pesquisarCampoVazio()`**
     - Ação: Clica no botão de pesquisa sem inserir texto.
     - Validação: Compara a URL gerada com a URL esperada para pesquisas vazias.
@@ -52,6 +54,7 @@ A classe de testes utiliza a biblioteca **JUnit 5** para estruturar e executar o
     - Resultado esperado: A página correta do produto deve ser exibida.
 
 **Métodos de Configuração:**
+
 - **`@BeforeAll setup()`**: Configura o ambiente de teste, incluindo a inicialização do ChromeDriver e definição de timeouts.
 - **`@AfterAll tearDown()`**: Finaliza os testes e fecha o navegador.
 
@@ -67,12 +70,15 @@ Antes de executar os testes, certifique-se de ter os seguintes itens configurado
 ## 🚀 Como Executar os Testes
 
 1. Clone este repositório:
+
    ```bash
    git clone https://github.com/seu-usuario/seu-repositorio.git
    ```
+
 2. Instale as dependências do projeto.
 3. Configure o caminho do **ChromeDriver** no ambiente ou no projeto.
 4. Execute os testes com um IDE como **IntelliJ IDEA** ou diretamente no terminal:
+
    ```bash
    ./gradlew test
    ```
@@ -80,11 +86,13 @@ Antes de executar os testes, certifique-se de ter os seguintes itens configurado
 ## 🧪 Exemplos de Resultados
 
 ### **Teste: Campo de Pesquisa Vazio**
+
 - **URL esperada:**  
   `https://automacao.testerglobal.com/?post_type=product&s=&product_cat=`
 - **Resultado:** Sucesso.
 
 ### **Teste: Pesquisa de Produto "Camera"**
+
 - **URL esperada:**  
   `https://automacao.testerglobal.com/product/camera/`
 - **Resultado:** Sucesso.
@@ -94,5 +102,3 @@ Antes de executar os testes, certifique-se de ter os seguintes itens configurado
 - Organização clara com separação de responsabilidades entre classes de página (Page Objects) e classes de teste.
 - Boas práticas no uso de JUnit para configuração e limpeza do ambiente de teste.
 - Testes automatizados reproduzíveis e robustos para validação de funcionalidade.
-
-
