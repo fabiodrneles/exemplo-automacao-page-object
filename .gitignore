@@ -40,3 +40,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+### IntelliJ IDEA (diretório inteiro, spec 003 FR-2) ###
+.idea/
