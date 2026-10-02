@@ -1,21 +1,18 @@
-name: CI
+name: Site real
 
+# 002 FR-2: os testes contra o site de terceiros rodam fora do CI de PR
+# (decisão D1), todo dia e sob demanda.
 on:
-  push:
-    branches: [main]
-  pull_request:
+  schedule:
+    - cron: "17 9 * * *"
   workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  ci:
-    name: make ci
+  site-real:
+    name: testes contra automacao.testerglobal.com
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -24,12 +21,11 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: gradle
-      - run: make ci
-      # 002 FR-1: relatório HTML dos testes, mesmo quando falham.
+      - run: ./gradlew --no-daemon test -DbaseUrl=https://automacao.testerglobal.com/
       - name: Relatório dos testes
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-report
+          name: test-report-site-real
           path: build/reports/tests/test
           if-no-files-found: ignore
