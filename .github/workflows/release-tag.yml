@@ -22,7 +22,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.ref }}
           fetch-depth: 0
@@ -38,7 +38,7 @@ jobs:
       - name: Tag calculada pelos commits
         if: inputs.version == ''
         id: version
-        uses: fabiodrneles/go-release-manager@v1.0.0
+        uses: fabiodrneles/go-release-manager@v1.1.0
         with:
           create: true
       - name: Resumo
